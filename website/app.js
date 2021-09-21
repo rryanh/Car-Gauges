@@ -23,9 +23,6 @@ arduino
   .getArduinoPort()
   .then((myport) => {
     const parser = myport.pipe(new readline({ delimiter: "\n" }));
-    myport.on("open", () => {
-      console.log("serial port open");
-    });
     parser.on("data", (arduino_Data) => {
       //console.log("got word from arduino:", arduino_Data);
       let arduinoData = JSON.parse(arduino_Data);
@@ -33,6 +30,7 @@ arduino
       data.oilTemp = arduinoData.oilTemp;
       data.oilPressure = arduinoData.oilPressure;
     });
+
     setInterval(function () {
       myport.write("\n", (err) => {
         if (err) {

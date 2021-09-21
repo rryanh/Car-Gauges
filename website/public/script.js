@@ -1,29 +1,87 @@
 'use strict';
 const serverIP = 'http://localhost:5000/';
-
-const boostGauge = {
-  fetchRoute: 'boost',
-  gaugeElement: document.querySelector('.boost-gauge'),
-  updateGauge(value) {
-    changeGaugeValue(this.gaugeElement, value, 38, 'PSI', -14.7, 1);
-  },
+const gauge = function (
+  fetchRoute,
+  gaugeElement,
+  gaugeMaxValue,
+  gaugeText,
+  gaugeTextValueCorrection = 0,
+  gaugeRounding = 0
+) {
+  this.fetchRoute = fetchRoute;
+  this.gaugeElement = gaugeElement;
+  this.gaugeMaxValue = gaugeMaxValue;
+  this.gaugeText = gaugeText;
+  this.gaugeTextValueCorrection = gaugeTextValueCorrection;
+  this.gaugeRounding = gaugeRounding;
+  this.gaugeText = gaugeText;
 };
 
-const oilPressure = {
-  fetchRoute: 'oilPressure',
-  gaugeElement: document.querySelector('.oil-pressure-gauge'),
-  updateGauge(value) {
-    changeGaugeValue(this.gaugeElement, value, 120, 'PSI');
-  },
+gauge.prototype.updateGauge = function (updateValue, gauge) {
+  changeGaugeValue(
+    updateValue,
+    gauge.gaugeElement,
+    gauge.gaugeMaxValue,
+    gauge.gaugeText,
+    gauge.gaugeTextValueCorrection,
+    gauge.gaugeRounding
+  );
 };
 
-const turboOilTemp = {
-  fetchRoute: 'oilTemp',
-  gaugeElement: document.querySelector('.oil-temp-turbo'),
-  updateGauge(value) {
-    changeGaugeValue(this.gaugeElement, value, 130, 'C');
-  },
+const changeGaugeValue = function (
+  value,
+  gauge,
+  gaugeMaxValue,
+  gaugeText,
+  gaugeTextValueCorrection = 0,
+  gaugeRounding = 0
+) {
+  // checks if value is outside gauges range and sets it to min or max value to prevent gauge slider from over rotating
+  let min = gauge.querySelector('.gauge-min');
+  let max = gauge.querySelector('.gauge-max');
+  let correctedValue =
+    value < 0 ? 0 : value > gaugeMaxValue ? gaugeMaxValue : value;
+
+  gauge.querySelector('.gauge__fill').style.transform = `rotate(${
+    correctedValue / (gaugeMaxValue * 2)
+  }turn)`;
+
+  gauge.querySelector('.gauge__cover').textContent = `${(
+    value + gaugeTextValueCorrection
+  ).toFixed(gaugeRounding)} ${gaugeText}`;
+
+  min.textContent =
+    value.toFixed(gaugeRounding) < min.textContent
+      ? value.toFixed(gaugeRounding)
+      : min.textContent;
+  max.textContent =
+    value.toFixed(gaugeRounding) > max.textContent
+      ? value.toFixed(gaugeRounding)
+      : max.textContent;
 };
+
+const oilTemp = new gauge(
+  'oilTemp',
+  document.querySelector('.oil-temp-turbo'),
+  150,
+  'C'
+);
+
+const boostGauge = new gauge(
+  'boost',
+  document.querySelector('.boost-gauge'),
+  38,
+  'PSI',
+  -14.7,
+  1
+);
+
+const oilPressure = new gauge(
+  'oilPressure',
+  document.querySelector('.oil-pressure-gauge'),
+  120,
+  'PSI'
+);
 
 const fetchData = function (server, gauge) {
   fetch(`${server + gauge.fetchRoute}`)
@@ -31,7 +89,7 @@ const fetchData = function (server, gauge) {
       return res.json();
     })
     .then(res => {
-      gauge.updateGauge(res);
+      gauge.updateGauge(res, gauge);
       console.log(res);
     })
     .catch(e => {
@@ -39,36 +97,14 @@ const fetchData = function (server, gauge) {
     });
 };
 
-const changeGaugeValue = function (
-  gauge,
-  value,
-  gaugeMaxValue,
-  gaugeText,
-  gaugeTextValueCorrection = 0,
-  gaugeRounding = 0
-) {
-  value = value < 0 ? 0 : value > gaugeMaxValue ? gaugeMaxValue : value;
-  gauge.querySelector('.gauge__fill').style.transform = `rotate(${
-    value / (gaugeMaxValue * 2)
-  }turn)`;
-
-  try {
-    gauge.querySelector('.gauge__cover').textContent = `${(
-      value + gaugeTextValueCorrection
-    ).toFixed(gaugeRounding)} ${gaugeText}`;
-  } catch (error) {
-    gauge.querySelector('.gauge__cover').textContent = `ERROR`;
-  }
-};
-
 setInterval(function () {
   fetchData(serverIP, boostGauge);
-}, 95);
+}, 96);
 
 setInterval(function () {
   fetchData(serverIP, oilPressure);
 }, 95);
 
 setInterval(function () {
-  fetchData(serverIP, turboOilTemp);
-}, 450);
+  fetchData(serverIP, oilTemp);
+}, 451);
