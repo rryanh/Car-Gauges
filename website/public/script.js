@@ -18,18 +18,10 @@ const oilPressure = {
 };
 
 const turboOilTemp = {
-  fetchRoute: 'oilTurbo',
+  fetchRoute: 'oilTemp',
   gaugeElement: document.querySelector('.oil-temp-turbo'),
   updateGauge(value) {
     changeGaugeValue(this.gaugeElement, value, 130, 'C');
-  },
-};
-
-const oilPanTemp = {
-  fetchRoute: 'oilPan',
-  gaugeElement: document.querySelector('.oil-temp-pan'),
-  updateGauge(value) {
-    changeGaugeValue(this.gaugeElement, value, 105, 'C');
   },
 };
 
@@ -40,6 +32,7 @@ const fetchData = function (server, gauge) {
     })
     .then(res => {
       gauge.updateGauge(res);
+      console.log(res);
     })
     .catch(e => {
       console.log(e);
@@ -70,10 +63,12 @@ const changeGaugeValue = function (
 
 setInterval(function () {
   fetchData(serverIP, boostGauge);
-  fetchData(serverIP, oilPanTemp);
-  fetchData(serverIP, turboOilTemp);
+}, 95);
+
+setInterval(function () {
   fetchData(serverIP, oilPressure);
-  // oilPressure.updateGauge(null);
-  // oilPanTemp.updateGauge(undefined);
-  // boostGauge.updateGauge('sdf');
-}, 5000);
+}, 95);
+
+setInterval(function () {
+  fetchData(serverIP, turboOilTemp);
+}, 450);

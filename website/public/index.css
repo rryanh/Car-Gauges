@@ -4,8 +4,9 @@ body {
 }
 .gauge-nameplate {
   width: 100%;
-  max-width: 250px;
+  max-width: 300px;
   padding: 20px;
+  margin: 5 5 5 5;
 }
 .gauge {
   font-family: 'Roboto', sans-serif;
