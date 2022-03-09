@@ -1,0 +1,22 @@
+.upper {
+  grid-template-columns: 70fr 30fr;
+  gap: 1.8rem;
+  margin: 1.8rem;
+}
+
+.left {
+  gap: 1.8rem;
+  display: grid;
+  gap: 1.8rem;
+}
+
+.row {
+  gap: 1.8rem;
+}
+
+.css-gauges {
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}

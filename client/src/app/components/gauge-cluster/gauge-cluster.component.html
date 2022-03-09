@@ -1,0 +1,26 @@
+<div class="grid">
+  <div class="grid upper">
+    <div class="left">
+      <div class="row grid grid--col-3">
+        <app-text-gauge [gauge]="afCorrection"></app-text-gauge>
+        <app-text-gauge [gauge]="afLearning"> </app-text-gauge>
+        <app-text-gauge [gauge]="iam"></app-text-gauge>
+      </div>
+
+      <div class="row grid grid--col-3">
+        <app-text-gauge [gauge]="knock"></app-text-gauge>
+        <app-text-gauge [gauge]="fineLearnKnock"></app-text-gauge>
+        <app-text-gauge [gauge]="afr"></app-text-gauge>
+      </div>
+    </div>
+    <div class="right">
+      <app-info-text [model]="model"></app-info-text>
+    </div>
+  </div>
+</div>
+
+<div class="grid grid--col-3 css-gauges">
+  <app-gauge [gauge]="oilPressure" [maxValue]="110"></app-gauge>
+  <app-gauge [gauge]="boost" [maxValue]="20"></app-gauge>
+  <app-gauge [gauge]="oilTemp" [maxValue]="150"></app-gauge>
+</div>

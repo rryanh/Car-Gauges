@@ -1,0 +1,19 @@
+<div class="gauge-nameplate">
+  <div class="gauge">
+    <div class="gauge__body">
+      <div
+        class="gauge__fill"
+        [style.transform]="'rotate(' + transform + 'turn)'"
+      ></div>
+      <div class="gauge__cover">{{ gauge?.value }} {{ gauge?.unit }}</div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="gauge-min">
+      {{ gauge?.min }}
+    </div>
+    <div class="gauge-name">{{ gauge?.name }}</div>
+    <div class="gauge-max">{{ gauge?.max }}</div>
+  </div>
+</div>

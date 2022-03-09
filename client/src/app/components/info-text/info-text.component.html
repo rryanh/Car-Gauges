@@ -1,0 +1,12 @@
+<div class="grid">
+  <div class="grid grid--col-4">
+    <div class=""></div>
+    <div class="">Min</div>
+    <div class="">Value</div>
+    <div class="">Max</div>
+  </div>
+
+  <div *ngFor="let gauge of model" class="flex">
+    <app-text [gauge]="gauge"></app-text>
+  </div>
+</div>

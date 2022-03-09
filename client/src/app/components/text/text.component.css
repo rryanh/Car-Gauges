@@ -1,0 +1,9 @@
+.name {
+  justify-self: flex-end;
+}
+.grid--col-4 {
+  justify-items: center;
+  align-items: center;
+  font-size: 3.2rem;
+  padding-top: 0.5rem;
+}

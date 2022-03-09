@@ -13,6 +13,7 @@ float oilPsi = 0;
 float boostPsi = 0;
 float oilTemp = 0;
 DynamicJsonDocument doc(1024);
+
 void setup() {
 Serial.begin(9600);
 }
@@ -23,10 +24,10 @@ void loop() {
     doc["boost"] = boostPsi;
     doc["oilTemp"] = oilTemp;
     doc["oilPressure"] = oilPsi;
-     serializeJson(doc, Serial);
+    serializeJson(doc, Serial);
     Serial.println();
     oilPsi = readOilPres();
-     boostPsi = readBoost();
+    boostPsi = readBoost();
     oilTemp = readOilTemp();
   }
 delay(25);

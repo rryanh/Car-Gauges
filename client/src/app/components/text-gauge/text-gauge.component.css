@@ -1,0 +1,40 @@
+.gauge-nameplate {
+  height: 100%;
+  border: 2px solid darkgray;
+  border-radius: 2px;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  padding: 2.4rem;
+}
+
+.gauge {
+  font-family: "Roboto", sans-serif;
+}
+
+.gauge-max {
+  text-align: right;
+}
+.gauge-name {
+  font-size: 1.4em;
+  padding: 0;
+  margin: 0;
+}
+
+.grid {
+  margin-top: 2.3rem;
+  font-weight: 600;
+  display: grid;
+  grid-template-columns: 1fr 8fr 1fr;
+  font-size: 2.4rem;
+  align-items: center;
+  width: 100%;
+}
+.gauge-name {
+  justify-self: center;
+}
+
+.gauge__cover {
+  font-weight: 600;
+  font-size: 9.6rem;
+}
