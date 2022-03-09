@@ -19,18 +19,18 @@
 <br />
 <div align="center">
 
-<h3 align="center">Car Gauges<h3>
+<h3 align="center">Car Gauges</h3>
 
   <p align="center">
   Displays anolog and ECU data 
     <br />
     <br />
     
-    ·
-    <a href="https://github.com/rryanh/Car-Gauges">Report Bug</a>
-    ·
-    <a href="https://github.com/rryanh/Car-Gauges">Request Feature</a>
+
   </p>
+   · <a href="https://github.com/rryanh/Car-Gauges">Report Bug</a>
+  <br/>
+   · <a href="https://github.com/rryanh/Car-Gauges">Request Feature</a>
 </div>
 
 <!-- TABLE OF CONTENTS -->
@@ -63,18 +63,18 @@
 
 
 
-Built for my cr
+Started as a simple project to display oil temperature, pressure, and boost. The project reads analog data using an Arduino device that communicates with the node server over USB to exchange data. Data is retrieved from the node server using an angular app to display the gauges/content.
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Built With
 
-- JS
+- TypeScript
 - HTML
 - CSS
-- WebGL
-- [Netlify](https://www.netlify.com/)
+- Angular
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -82,7 +82,7 @@ Built for my cr
 
 ## Getting Started
 
-To get a local copy up and running follow these example steps.
+To get a local copy up and running follow these steps.
 
 ### Prerequisites
 
@@ -90,18 +90,31 @@ To get a local copy up and running follow these example steps.
   ```sh
   npm install npm@latest -g
   ```
-
+- Angular
+  ```sh
+  npm install -g @angular/cli
+  ```
 ### Installation
 
 2. Clone the repo
    ```sh
-   git clone https://github.com/rryanh/Car-Gauges.Git
+   git clone https://github.com/rryanh/Car-Gauges.git
    ```
-3. Install NPM packages
+3. Install NPM packages in both /server and /client
    ```sh
    npm install
    ```
-
+4. Build and serve client 
+   ```sh
+   cd client
+   ng serve
+   ```
+5. Run the sevrer 
+   ```sh
+   cd server
+   npm start
+   ```
+ 6. Open http://localhost:4200/
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- ROADMAP -->
