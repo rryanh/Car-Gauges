@@ -109,7 +109,7 @@ To get a local copy up and running follow these steps.
    cd client
    ng serve
    ```
-5. Run the sevrer 
+5. Run the sever 
    ```sh
    cd server
    npm start
