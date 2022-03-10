@@ -114,7 +114,7 @@ To get a local copy up and running follow these steps.
    cd server
    npm start
    ```
- 6. Open http://localhost:4200/
+ 6. Open http://localhost:4200/ and set the window size to 1920 x 1080
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- ROADMAP -->
