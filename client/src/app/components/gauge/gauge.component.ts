@@ -9,9 +9,7 @@ import { Gauge } from '../../Gauge';
 export class GaugeComponent implements OnInit, DoCheck {
   @Input() gauge?: Gauge;
   @Input() maxValue!: number;
-  @Input() minValue = 0;
-  @Input() displayOffset = 0;
-  @Input() displayFlip = 0;
+
   lastGaugeVal = 0;
 
   transform!: number;
@@ -36,9 +34,6 @@ export class GaugeComponent implements OnInit, DoCheck {
     if (this.gauge.value > 0) correctedValue = +this.gauge.value;
     if (this.gauge.value > this.maxValue) correctedValue = this.maxValue;
 
-    this.transform =
-      correctedValue / (this.maxValue * 2) +
-      this.displayFlip +
-      this.displayOffset;
+    this.transform = correctedValue / (this.maxValue * 2);
   }
 }

@@ -27,71 +27,69 @@ export class GaugeClusterComponent implements OnInit {
   constructor(private gaugeService: GaugeService) {}
 
   ngOnInit(): void {
-    this.gaugeService.getAfCorrection().subscribe((val) => {
-      this.afCorrection = val;
-    });
+    this.gaugeService.afCorrection.subscribe(
+      (val) => (this.afCorrection = val)
+    );
 
-    this.gaugeService.getAfLearning().subscribe((val) => {
+    this.gaugeService.afLearning.subscribe((val) => {
       this.afLearning = val;
     });
 
-    this.gaugeService.getAfr().subscribe((val) => {
+    this.gaugeService.afr.subscribe((val) => {
       this.afr = val;
     });
 
-    this.gaugeService.getAit().subscribe((val) => {
+    this.gaugeService.ait.subscribe((val) => {
       this.ait = val;
     });
 
-    this.gaugeService.getBoost().subscribe((val) => {
+    this.gaugeService.boost.subscribe((val) => {
       this.boost = val;
     });
 
-    this.gaugeService.getFineLearnKnock().subscribe((val) => {
+    this.gaugeService.fineLearnKnock.subscribe((val) => {
       this.fineLearnKnock = val;
     });
 
-    this.gaugeService.getIam().subscribe((val) => {
+    this.gaugeService.iam.subscribe((val) => {
       this.iam = val;
     });
 
-    this.gaugeService.getIdc().subscribe((val) => {
+    this.gaugeService.idc.subscribe((val) => {
       this.idc = val;
     });
 
-    this.gaugeService.getOilTemp().subscribe((val) => {
+    this.gaugeService.oilTemp.subscribe((val) => {
       this.oilTemp = val;
     });
 
-    this.gaugeService.getOilPressure().subscribe((val) => {
+    this.gaugeService.oilPressure.subscribe((val) => {
       this.oilPressure = val;
     });
 
-    this.gaugeService.getRpm().subscribe((val) => {
+    this.gaugeService.rpm.subscribe((val) => {
       this.rpm = val;
     });
 
-    this.gaugeService.getKnock().subscribe((val) => {
+    this.gaugeService.knock.subscribe((val) => {
       this.knock = val;
     });
 
-    this.gaugeService.getLoad().subscribe((val) => {
+    this.gaugeService.load.subscribe((val) => {
       this.load = val;
     });
 
-    this.gaugeService.getIgnitionTotalTiming().subscribe((val) => {
+    this.gaugeService.ignitionTotalTiming.subscribe((val) => {
       this.ignitionTotalTiming = val;
     });
-    this.gaugeService.getMaf().subscribe((val) => {
+    this.gaugeService.maf.subscribe((val) => {
       this.maf = val;
       this.model = [
         this.maf,
         this.ait,
         this.idc,
         this.ignitionTotalTiming,
-
         this.load,
-
         this.rpm,
       ];
     });

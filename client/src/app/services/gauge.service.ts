@@ -13,21 +13,21 @@ import { Gauge } from '../Gauge';
 export class GaugeService {
   private api = 'http://localhost:3000/';
 
-  private afCorrection: Subject<Gauge>;
-  private afLearning: Subject<Gauge>;
-  private afr: Subject<Gauge>;
-  private ait: Subject<Gauge>;
-  private boost: Subject<Gauge>;
-  private fineLearnKnock: Subject<Gauge>;
-  private iam: Subject<Gauge>;
-  private idc: Subject<Gauge>;
-  private ignitionTotalTiming: Subject<Gauge>;
-  private knock: Subject<Gauge>;
-  private load: Subject<Gauge>;
-  private maf: Subject<Gauge>;
-  private oilPressure: Subject<Gauge>;
-  private oilTemp: Subject<Gauge>;
-  private rpm: Subject<Gauge>;
+  afCorrection = new Subject<Gauge>();
+  afLearning = new Subject<Gauge>();
+  afr = new Subject<Gauge>();
+  ait = new Subject<Gauge>();
+  boost = new Subject<Gauge>();
+  fineLearnKnock = new Subject<Gauge>();
+  iam = new Subject<Gauge>();
+  idc = new Subject<Gauge>();
+  ignitionTotalTiming = new Subject<Gauge>();
+  knock = new Subject<Gauge>();
+  load = new Subject<Gauge>();
+  maf = new Subject<Gauge>();
+  oilPressure = new Subject<Gauge>();
+  oilTemp = new Subject<Gauge>();
+  rpm = new Subject<Gauge>();
 
   private afCorrectionGauge = new Gauge('AF Correction', 0, 1, '%');
   private afLearningGauge = new Gauge('AF Learning', 0, 1, '%');
@@ -46,21 +46,6 @@ export class GaugeService {
   private rpmGauge = new Gauge('RPM', 0, 0, '');
 
   constructor(private http: HttpClient) {
-    this.afCorrection = new Subject<Gauge>();
-    this.afLearning = new Subject<Gauge>();
-    this.afr = new Subject<Gauge>();
-    this.ait = new Subject<Gauge>();
-    this.boost = new Subject<Gauge>();
-    this.fineLearnKnock = new Subject<Gauge>();
-    this.iam = new Subject<Gauge>();
-    this.idc = new Subject<Gauge>();
-    this.ignitionTotalTiming = new Subject<Gauge>();
-    this.knock = new Subject<Gauge>();
-    this.load = new Subject<Gauge>();
-    this.maf = new Subject<Gauge>();
-    this.oilPressure = new Subject<Gauge>();
-    this.oilTemp = new Subject<Gauge>();
-    this.rpm = new Subject<Gauge>();
     this.updateDataCycle();
   }
 
@@ -85,54 +70,6 @@ export class GaugeService {
     this.oilPressure.next(this.oilPressureGauge.update(data.oilPressure));
     this.oilTemp.next(this.oilTempGauge.update(data.oilTemp));
     this.rpm.next(this.rpmGauge.update(data.rpm));
-  }
-
-  // getters
-
-  getAfCorrection(): Observable<Gauge> {
-    return this.afCorrection.asObservable();
-  }
-  getAfLearning(): Observable<any> {
-    return this.afLearning.asObservable();
-  }
-  getAfr(): Observable<any> {
-    return this.afr.asObservable();
-  }
-  getLoad(): Observable<any> {
-    return this.load.asObservable();
-  }
-  getAit(): Observable<any> {
-    return this.ait.asObservable();
-  }
-  getBoost(): Observable<any> {
-    return this.boost.asObservable();
-  }
-  getFineLearnKnock(): Observable<any> {
-    return this.fineLearnKnock.asObservable();
-  }
-  getIam(): Observable<any> {
-    return this.iam.asObservable();
-  }
-  getIgnitionTotalTiming(): Observable<any> {
-    return this.ignitionTotalTiming.asObservable();
-  }
-  getIdc(): Observable<any> {
-    return this.idc.asObservable();
-  }
-  getKnock(): Observable<any> {
-    return this.knock.asObservable();
-  }
-  getMaf(): Observable<any> {
-    return this.maf.asObservable();
-  }
-  getOilPressure(): Observable<any> {
-    return this.oilPressure.asObservable();
-  }
-  getOilTemp(): Observable<any> {
-    return this.oilTemp.asObservable();
-  }
-  getRpm(): Observable<any> {
-    return this.rpm.asObservable();
   }
 
   updateDataCycle() {
